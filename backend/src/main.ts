@@ -7,6 +7,8 @@ async function bootstrap() {
     instrument: ObserveInstrument,
   });
 
+  app.enableCors();
+
   const config = new DocumentBuilder()
     .setTitle('FastAndEasy API')
     .setDescription('App for words learning and more')
