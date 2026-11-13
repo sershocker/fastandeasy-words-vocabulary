@@ -196,10 +196,10 @@ export type WordGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type WordGroupByOutputType = {
   id: number
   original: string
-  definition: string
+  definition: string | null
   translation: string
   rating: number
-  cardsetId: number
+  cardsetId: number | null
   _count: WordCountAggregateOutputType | null
   _avg: WordAvgAggregateOutputType | null
   _sum: WordSumAggregateOutputType | null
@@ -228,20 +228,20 @@ export type WordWhereInput = {
   NOT?: Prisma.WordWhereInput | Prisma.WordWhereInput[]
   id?: Prisma.IntFilter<"Word"> | number
   original?: Prisma.StringFilter<"Word"> | string
-  definition?: Prisma.StringFilter<"Word"> | string
+  definition?: Prisma.StringNullableFilter<"Word"> | string | null
   translation?: Prisma.StringFilter<"Word"> | string
   rating?: Prisma.IntFilter<"Word"> | number
-  cardsetId?: Prisma.IntFilter<"Word"> | number
-  cardset?: Prisma.XOR<Prisma.CardsetScalarRelationFilter, Prisma.CardsetWhereInput>
+  cardsetId?: Prisma.IntNullableFilter<"Word"> | number | null
+  cardset?: Prisma.XOR<Prisma.CardsetNullableScalarRelationFilter, Prisma.CardsetWhereInput> | null
 }
 
 export type WordOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   original?: Prisma.SortOrder
-  definition?: Prisma.SortOrder
+  definition?: Prisma.SortOrderInput | Prisma.SortOrder
   translation?: Prisma.SortOrder
   rating?: Prisma.SortOrder
-  cardsetId?: Prisma.SortOrder
+  cardsetId?: Prisma.SortOrderInput | Prisma.SortOrder
   cardset?: Prisma.CardsetOrderByWithRelationInput
 }
 
@@ -251,20 +251,20 @@ export type WordWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.WordWhereInput[]
   NOT?: Prisma.WordWhereInput | Prisma.WordWhereInput[]
   original?: Prisma.StringFilter<"Word"> | string
-  definition?: Prisma.StringFilter<"Word"> | string
+  definition?: Prisma.StringNullableFilter<"Word"> | string | null
   translation?: Prisma.StringFilter<"Word"> | string
   rating?: Prisma.IntFilter<"Word"> | number
-  cardsetId?: Prisma.IntFilter<"Word"> | number
-  cardset?: Prisma.XOR<Prisma.CardsetScalarRelationFilter, Prisma.CardsetWhereInput>
+  cardsetId?: Prisma.IntNullableFilter<"Word"> | number | null
+  cardset?: Prisma.XOR<Prisma.CardsetNullableScalarRelationFilter, Prisma.CardsetWhereInput> | null
 }, "id">
 
 export type WordOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   original?: Prisma.SortOrder
-  definition?: Prisma.SortOrder
+  definition?: Prisma.SortOrderInput | Prisma.SortOrder
   translation?: Prisma.SortOrder
   rating?: Prisma.SortOrder
-  cardsetId?: Prisma.SortOrder
+  cardsetId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.WordCountOrderByAggregateInput
   _avg?: Prisma.WordAvgOrderByAggregateInput
   _max?: Prisma.WordMaxOrderByAggregateInput
@@ -278,58 +278,58 @@ export type WordScalarWhereWithAggregatesInput = {
   NOT?: Prisma.WordScalarWhereWithAggregatesInput | Prisma.WordScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Word"> | number
   original?: Prisma.StringWithAggregatesFilter<"Word"> | string
-  definition?: Prisma.StringWithAggregatesFilter<"Word"> | string
+  definition?: Prisma.StringNullableWithAggregatesFilter<"Word"> | string | null
   translation?: Prisma.StringWithAggregatesFilter<"Word"> | string
   rating?: Prisma.IntWithAggregatesFilter<"Word"> | number
-  cardsetId?: Prisma.IntWithAggregatesFilter<"Word"> | number
+  cardsetId?: Prisma.IntNullableWithAggregatesFilter<"Word"> | number | null
 }
 
 export type WordCreateInput = {
   original: string
-  definition: string
+  definition?: string | null
   translation: string
   rating: number
-  cardset: Prisma.CardsetCreateNestedOneWithoutWordsInput
+  cardset?: Prisma.CardsetCreateNestedOneWithoutWordsInput
 }
 
 export type WordUncheckedCreateInput = {
   id?: number
   original: string
-  definition: string
+  definition?: string | null
   translation: string
   rating: number
-  cardsetId: number
+  cardsetId?: number | null
 }
 
 export type WordUpdateInput = {
   original?: Prisma.StringFieldUpdateOperationsInput | string
-  definition?: Prisma.StringFieldUpdateOperationsInput | string
+  definition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   translation?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
-  cardset?: Prisma.CardsetUpdateOneRequiredWithoutWordsNestedInput
+  cardset?: Prisma.CardsetUpdateOneWithoutWordsNestedInput
 }
 
 export type WordUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   original?: Prisma.StringFieldUpdateOperationsInput | string
-  definition?: Prisma.StringFieldUpdateOperationsInput | string
+  definition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   translation?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
-  cardsetId?: Prisma.IntFieldUpdateOperationsInput | number
+  cardsetId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type WordCreateManyInput = {
   id?: number
   original: string
-  definition: string
+  definition?: string | null
   translation: string
   rating: number
-  cardsetId: number
+  cardsetId?: number | null
 }
 
 export type WordUpdateManyMutationInput = {
   original?: Prisma.StringFieldUpdateOperationsInput | string
-  definition?: Prisma.StringFieldUpdateOperationsInput | string
+  definition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   translation?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
 }
@@ -337,10 +337,10 @@ export type WordUpdateManyMutationInput = {
 export type WordUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   original?: Prisma.StringFieldUpdateOperationsInput | string
-  definition?: Prisma.StringFieldUpdateOperationsInput | string
+  definition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   translation?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
-  cardsetId?: Prisma.IntFieldUpdateOperationsInput | number
+  cardsetId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type WordListRelationFilter = {
@@ -434,9 +434,21 @@ export type WordUncheckedUpdateManyWithoutCardsetNestedInput = {
   deleteMany?: Prisma.WordScalarWhereInput | Prisma.WordScalarWhereInput[]
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type WordCreateWithoutCardsetInput = {
   original: string
-  definition: string
+  definition?: string | null
   translation: string
   rating: number
 }
@@ -444,7 +456,7 @@ export type WordCreateWithoutCardsetInput = {
 export type WordUncheckedCreateWithoutCardsetInput = {
   id?: number
   original: string
-  definition: string
+  definition?: string | null
   translation: string
   rating: number
 }
@@ -480,23 +492,23 @@ export type WordScalarWhereInput = {
   NOT?: Prisma.WordScalarWhereInput | Prisma.WordScalarWhereInput[]
   id?: Prisma.IntFilter<"Word"> | number
   original?: Prisma.StringFilter<"Word"> | string
-  definition?: Prisma.StringFilter<"Word"> | string
+  definition?: Prisma.StringNullableFilter<"Word"> | string | null
   translation?: Prisma.StringFilter<"Word"> | string
   rating?: Prisma.IntFilter<"Word"> | number
-  cardsetId?: Prisma.IntFilter<"Word"> | number
+  cardsetId?: Prisma.IntNullableFilter<"Word"> | number | null
 }
 
 export type WordCreateManyCardsetInput = {
   id?: number
   original: string
-  definition: string
+  definition?: string | null
   translation: string
   rating: number
 }
 
 export type WordUpdateWithoutCardsetInput = {
   original?: Prisma.StringFieldUpdateOperationsInput | string
-  definition?: Prisma.StringFieldUpdateOperationsInput | string
+  definition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   translation?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
 }
@@ -504,7 +516,7 @@ export type WordUpdateWithoutCardsetInput = {
 export type WordUncheckedUpdateWithoutCardsetInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   original?: Prisma.StringFieldUpdateOperationsInput | string
-  definition?: Prisma.StringFieldUpdateOperationsInput | string
+  definition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   translation?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
 }
@@ -512,7 +524,7 @@ export type WordUncheckedUpdateWithoutCardsetInput = {
 export type WordUncheckedUpdateManyWithoutCardsetInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   original?: Prisma.StringFieldUpdateOperationsInput | string
-  definition?: Prisma.StringFieldUpdateOperationsInput | string
+  definition?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   translation?: Prisma.StringFieldUpdateOperationsInput | string
   rating?: Prisma.IntFieldUpdateOperationsInput | number
 }
@@ -526,7 +538,7 @@ export type WordSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   translation?: boolean
   rating?: boolean
   cardsetId?: boolean
-  cardset?: boolean | Prisma.CardsetDefaultArgs<ExtArgs>
+  cardset?: boolean | Prisma.Word$cardsetArgs<ExtArgs>
 }, ExtArgs["result"]["word"]>
 
 export type WordSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -536,7 +548,7 @@ export type WordSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   translation?: boolean
   rating?: boolean
   cardsetId?: boolean
-  cardset?: boolean | Prisma.CardsetDefaultArgs<ExtArgs>
+  cardset?: boolean | Prisma.Word$cardsetArgs<ExtArgs>
 }, ExtArgs["result"]["word"]>
 
 export type WordSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -546,7 +558,7 @@ export type WordSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   translation?: boolean
   rating?: boolean
   cardsetId?: boolean
-  cardset?: boolean | Prisma.CardsetDefaultArgs<ExtArgs>
+  cardset?: boolean | Prisma.Word$cardsetArgs<ExtArgs>
 }, ExtArgs["result"]["word"]>
 
 export type WordSelectScalar = {
@@ -560,27 +572,27 @@ export type WordSelectScalar = {
 
 export type WordOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "original" | "definition" | "translation" | "rating" | "cardsetId", ExtArgs["result"]["word"]>
 export type WordInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  cardset?: boolean | Prisma.CardsetDefaultArgs<ExtArgs>
+  cardset?: boolean | Prisma.Word$cardsetArgs<ExtArgs>
 }
 export type WordIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  cardset?: boolean | Prisma.CardsetDefaultArgs<ExtArgs>
+  cardset?: boolean | Prisma.Word$cardsetArgs<ExtArgs>
 }
 export type WordIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  cardset?: boolean | Prisma.CardsetDefaultArgs<ExtArgs>
+  cardset?: boolean | Prisma.Word$cardsetArgs<ExtArgs>
 }
 
 export type $WordPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Word"
   objects: {
-    cardset: Prisma.$CardsetPayload<ExtArgs>
+    cardset: Prisma.$CardsetPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     original: string
-    definition: string
+    definition: string | null
     translation: string
     rating: number
-    cardsetId: number
+    cardsetId: number | null
   }, ExtArgs["result"]["word"]>
   composites: {}
 }
@@ -975,7 +987,7 @@ readonly fields: WordFieldRefs;
  */
 export interface Prisma__WordClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  cardset<T extends Prisma.CardsetDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CardsetDefaultArgs<ExtArgs>>): Prisma.Prisma__CardsetClient<runtime.Types.Result.GetResult<Prisma.$CardsetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  cardset<T extends Prisma.Word$cardsetArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Word$cardsetArgs<ExtArgs>>): Prisma.Prisma__CardsetClient<runtime.Types.Result.GetResult<Prisma.$CardsetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1407,6 +1419,25 @@ export type WordDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Words to delete.
    */
   limit?: number
+}
+
+/**
+ * Word.cardset
+ */
+export type Word$cardsetArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Cardset
+   */
+  select?: Prisma.CardsetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Cardset
+   */
+  omit?: Prisma.CardsetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CardsetInclude<ExtArgs> | null
+  where?: Prisma.CardsetWhereInput
 }
 
 /**

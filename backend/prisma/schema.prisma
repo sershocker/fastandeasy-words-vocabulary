@@ -24,11 +24,11 @@ model Cardset {
 model Word {
     id          Int     @id @default(autoincrement())
     original    String
-    definition  String
+    definition  String?
     translation String
     rating      Int
-    cardsetId   Int     
-    cardset     Cardset @relation(fields: [cardsetId], references: [id])
+    cardsetId   Int?     
+    cardset     Cardset? @relation(fields: [cardsetId], references: [id])
 }
 
 //npx prisma migrate dev --name init

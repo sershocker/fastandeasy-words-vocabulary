@@ -337,9 +337,9 @@ export type CardsetSumOrderByAggregateInput = {
   rating?: Prisma.SortOrder
 }
 
-export type CardsetScalarRelationFilter = {
-  is?: Prisma.CardsetWhereInput
-  isNot?: Prisma.CardsetWhereInput
+export type CardsetNullableScalarRelationFilter = {
+  is?: Prisma.CardsetWhereInput | null
+  isNot?: Prisma.CardsetWhereInput | null
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -360,10 +360,12 @@ export type CardsetCreateNestedOneWithoutWordsInput = {
   connect?: Prisma.CardsetWhereUniqueInput
 }
 
-export type CardsetUpdateOneRequiredWithoutWordsNestedInput = {
+export type CardsetUpdateOneWithoutWordsNestedInput = {
   create?: Prisma.XOR<Prisma.CardsetCreateWithoutWordsInput, Prisma.CardsetUncheckedCreateWithoutWordsInput>
   connectOrCreate?: Prisma.CardsetCreateOrConnectWithoutWordsInput
   upsert?: Prisma.CardsetUpsertWithoutWordsInput
+  disconnect?: Prisma.CardsetWhereInput | boolean
+  delete?: Prisma.CardsetWhereInput | boolean
   connect?: Prisma.CardsetWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.CardsetUpdateToOneWithWhereWithoutWordsInput, Prisma.CardsetUpdateWithoutWordsInput>, Prisma.CardsetUncheckedUpdateWithoutWordsInput>
 }

@@ -1,71 +1,51 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateWordDto } from './words.controller.js';
+import { CreateWordDto, UpdateWordDto } from './words.controller.js';
 import { IsOptional } from 'class-validator';
 import { PrismaService } from '../prisma/prisma.service.js';
-
-export interface Word {
-  id: number;
-  original: string;
-  definition?: string;
-  translation: string;
-  cardsetId?: number;
-}
+import { Prisma, Word } from '../generated/prisma/client.js';
 
 @Injectable()
 export class WordsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  data: Word[] = [
-    {
-      id: 1,
-      original: 'come',
-      definition: 'final point of go',
-      translation: 'приходить',
-    },
-  ];
-
-  findAll(): Word[] {
-    return this.data;
+  async findAll() {
+    //return this.data;
+    return await this.prisma.word.findMany();
   }
 
-  findOne(id: number): Word {
-    const answer = this.data.find((word) => (word.id = id));
+  async findOne(id: number) {
+    const answer = await this.prisma.word.findUnique({ where: { id: id } });
     if (!answer) {
       throw new NotFoundException(`Word with id=${id} not found`);
     }
     return answer;
   }
 
-  create(obj: CreateWordDto): Word {
-    const newId = this.data.length + 1;
-    const newWord = {
-      id: newId,
-      ...obj,
-    };
-    this.data.push(newWord);
-    return newWord;
+  async create(obj: CreateWordDto) {
+    return this.prisma.word.create({
+      data: { ...obj, rating: 0 },
+    });
   }
 
-  update(id: number, obj: CreateWordDto) {
-    const index = this.data.findIndex((word) => word.id === id);
-    if (index === -1) {
+  async update(id: number, obj: UpdateWordDto) {
+    const index = this.findOne(id);
+    if (!index) {
       throw new NotFoundException(`Word with id=${id} not found`);
     }
-    this.data[index] = {
-      id: id,
-      ...obj,
-    };
+    const answer = await this.prisma.word.update({
+      where: { id: id },
+      data: obj,
+    });
+
     return {
       message: 'Words data was updated',
-      word: this.data[index],
+      word: answer,
     };
   }
 
-  remove(id: number) {
-    const index = this.data.findIndex((word) => word.id === id);
-    if (index === -1) {
+  async remove(id: number) {
+    if (await this.findOne(id))
       throw new NotFoundException(`Word with id=${id} not found`);
-    }
-    this.data.splice(index, 1);
+    await this.prisma.word.delete({ where: { id: id } });
   }
 }
