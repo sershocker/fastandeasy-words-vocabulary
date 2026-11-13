@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Cardset {
+    id          Int     @id @default(autoincrement())
+    name        String
+    definition  String
+    words       Word[]
+    rating      Int
+}
+
+
+model Word {
+    id          Int     @id @default(autoincrement())
+    original    String
+    definition  String
+    translation String
+    rating      Int
+    cardsetId   Int     
+    cardset     Cardset @relation(fields: [cardsetId], references: [id])
+}
+
+//npx prisma migrate dev --name init
